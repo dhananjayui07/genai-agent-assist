@@ -1,0 +1,56 @@
+{
+  "name": "genai-agent-assist",
+  "version": "1.0.3",
+  "description": "genai-agent-assist",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build:css": "postcss src/styles.css -o dist/styles.css",
+    "build:ts": "tsc",
+    "build": "npm run build:ts && npm run build:css",
+    "preversion": "npm run build",
+    "version": "npm publish"
+  },
+  "author": "",
+  "license": "ISC",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --quiet --cache --fix"
+    ],
+    "*.{json,js,ts,jsx,tsx,html}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.67",
+    "autoprefixer": "^10.4.18",
+    "postcss-cli": "^11.0.0",
+    "rimraf": "^5.0.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.1.6",
+    "prettier": "^3.0.3",
+    "eslint": "^8.49.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "lint-staged": "^14.0.1"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "postcss": "^8.4.37",
+    "react-dom": "^18.2.0"
+  }
+}
