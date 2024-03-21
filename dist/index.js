@@ -9,6 +9,6 @@ const wrapper_1 = __importDefault(require("./components/wrapper"));
 require("./styles.css");
 const AgentAssist = () => {
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(wrapper_1.default, { text: "Agent assist wrapper!" })));
+        react_1.default.createElement(wrapper_1.default, null)));
 };
 exports.AgentAssist = AgentAssist;
