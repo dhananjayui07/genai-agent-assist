@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { SALES_BOT_FAQS_API_URL } from '../apiUrls';
+import { getAccessToken } from '../token-service';
 
 interface ApiResponse {
 	instruction?: string;
@@ -7,41 +9,8 @@ interface ApiResponse {
 
 const ScriptTabContent: React.FC = () => {
 	const [accessToken, setAccessToken] = useState('');
-
 	const [dataHistory, setDataHistory] = useState<ApiResponse[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
-	const [titleText, setTitleText] = useState<string[]>(['Address Search']);
-
-	useEffect(() => {
-		const getAccessToken = async () => {
-			console.log('in access token function');
-			let oauthKey = 'mhrKq8EbncAmw5HfTaqPPK7MHYwHvTAHJakOUtPWthWgYK6k';
-			let oauthSecret = 'KnAEPxNhbwCupculrA0uO5PJlVsmS3r1sy3fwu326SGT6QSbhaAfen32HLGqKe3E';
-
-			const oauthCredentials = btoa(`${oauthKey}:${oauthSecret}`);
-
-			try {
-				console.log('before fetch request start');
-				const response = await fetch(
-					'https://api-dv.brightspeed.com/genai/oauth/client_credential/accesstoken?grant_type=client_credentials',
-					{
-						method: 'POST',
-						headers: {
-							Authorization: `Basic ${oauthCredentials}`,
-							'Content-Type': 'application/json',
-						},
-					}
-				);
-				const data = await response.json();
-				console.log('access_token: ', data.access_token);
-				setAccessToken(data.access_token);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
-		getAccessToken();
-	}, []);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -60,8 +29,8 @@ const ScriptTabContent: React.FC = () => {
 			};
 
 			try {
-				console.log('before fetch request start');
-				const response = await fetch('https://api-dv.brightspeed.com/genai-studio/sales_bot/', {
+				const accessToken = await getAccessToken();
+				const response = await fetch(SALES_BOT_FAQS_API_URL, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -71,7 +40,7 @@ const ScriptTabContent: React.FC = () => {
 				});
 
 				const responseData = await response.json();
-				console.log('Sales bot response data:', responseData);
+				console.log('Sales bot response data from service:', responseData);
 				setDataHistory([responseData]);
 			} catch (error) {
 				console.log('Error calling API:', error);

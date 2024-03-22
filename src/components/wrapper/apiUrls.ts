@@ -1,0 +1,12 @@
+const BASE_OAUTH_URL = 'https://api-dv.brightspeed.com/genai/';
+const BASE_URL = 'https://api-dv.brightspeed.com/genai-studio/';
+export const OAUTH_API_URL = `${BASE_OAUTH_URL}oauth/client_credential/accesstoken?grant_type=client_credentials`;
+export const SUMMARY_API_URL = `${BASE_URL}api/v1/genai/summary`;
+export const GENERATE_EMAIL_API_URL = `${BASE_URL}api/v1/generate/email`;
+export const SALES_BOT_API_URL = `${BASE_URL}sales_bot/`;
+export const SALES_BOT_FAQS_API_URL = `${BASE_URL}sales_bot_faqs`;
+export const FAQ_RAG_API_URL = `${BASE_URL}faq_rag/`;
+export const FAQ_INSIGHT_CATEGORY_SEARCH_API_URL = `${BASE_URL}api/v1/admintool/genaifaqregistry`;
+export const FAQ_INSIGHT_SMART_SEARCH_API_URL = `${BASE_URL}api/v1/admintool/genaifaqregistry/search`;
+export const FAQ_CATEGORY_API_URL = `${BASE_URL}/api/v1/admintool/genaifaqcategory/all`;
+export const FEEDBACK_ADD_API_URL = `${BASE_URL}/api/v1/admintool/feedback`;

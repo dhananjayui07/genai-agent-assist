@@ -1,5 +1,5 @@
 import { BeakerIcon } from '@heroicons/react/24/solid';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Insights from './insights';
 import ScriptTabContent from './script-tab-content';
 
@@ -7,50 +7,17 @@ function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(' ');
 }
 
-const scriptTabs = [
-	{
-		id: 'tab1',
-		label: 'Assist',
-		content: <ScriptTabContent />,
-	},
-	{ id: 'tab2', label: 'Transcript', content: <div>Coming Soon.....</div> },
-	{ id: 'tab3', label: 'Feedback', content: <div>Coming Soon..</div> },
-];
-
 const StaticSales: React.FC = () => {
+	const scriptTabs = [
+		{
+			id: 'tab1',
+			label: 'Assist',
+			content: <ScriptTabContent />,
+		},
+		{ id: 'tab2', label: 'Transcript', content: <div>Coming Soon.....</div> },
+		{ id: 'tab3', label: 'Feedback', content: <div>Coming Soon..</div> },
+	];
 	const [activeTab, setActiveTab] = useState(scriptTabs[0].id);
-	const [accessToken, setAccessToken] = useState('');
-
-	useEffect(() => {
-		const getAccessToken = async () => {
-			console.log('in access token function');
-			let oauthKey = 'mhrKq8EbncAmw5HfTaqPPK7MHYwHvTAHJakOUtPWthWgYK6k';
-			let oauthSecret = 'KnAEPxNhbwCupculrA0uO5PJlVsmS3r1sy3fwu326SGT6QSbhaAfen32HLGqKe3E';
-
-			const oauthCredentials = btoa(`${oauthKey}:${oauthSecret}`);
-
-			try {
-				console.log('before fetch request start');
-				const response = await fetch(
-					'https://api-dv.brightspeed.com/genai/oauth/client_credential/accesstoken?grant_type=client_credentials',
-					{
-						method: 'POST',
-						headers: {
-							Authorization: `Basic ${oauthCredentials}`,
-							'Content-Type': 'application/json',
-						},
-					}
-				);
-				const data = await response.json();
-				console.log('access_token: ', data.access_token);
-				setAccessToken(data.access_token);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
-		getAccessToken();
-	}, []);
 
 	return (
 		<>
