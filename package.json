@@ -1,6 +1,6 @@
 {
   "name": "genai-agent-assist",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "genai-agent-assist",
   "main": "dist/index.js",
   "files": [
