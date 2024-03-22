@@ -1,6 +1,6 @@
 {
   "name": "genai-agent-assist",
-  "version": "1.0.11",
+  "version": "1.0.14",
   "description": "genai-agent-assist",
   "main": "dist/index.js",
   "files": [
@@ -51,6 +51,7 @@
     "react": "^18.2.0"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.1",
     "axios": "^1.6.2",
     "postcss": "^8.4.37",
     "react-cookie": "^7.1.0",
